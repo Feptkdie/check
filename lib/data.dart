@@ -32,6 +32,11 @@ String currentUserFavCar = toNull;
 String currentUserFavJob = toNull;
 String currentUserFavAnswer1 = toNull;
 String searchPageSelectedCategory = toNull;
+String currentUserBank = toNull;
+String currentUserAccount = toNull;
+String currentUserAccountName = toNull;
+String currentUserBankDesc = toNull;
+String currentUserMoney = toNull;
 
 int currentBottomIndex = 0;
 int currentBottomIndex2 = 0;
@@ -82,6 +87,7 @@ List<HomeModel> homeItems = [];
 List<CategoryModel> categoryItems = [];
 List<CategoryModel> adviceCategoryItems = [];
 List<BannerModel> bannerItems = [];
+List userPullRequestItems = [];
 
 /*
 

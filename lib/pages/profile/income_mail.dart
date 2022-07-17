@@ -1,4 +1,8 @@
+import 'package:check/constants.dart';
+import 'package:check/pages/profile/widgets/mail_box.dart';
 import 'package:flutter/material.dart';
+
+import 'send_mail.dart';
 
 class IncomeMail extends StatefulWidget {
   const IncomeMail({Key? key}) : super(key: key);
@@ -14,23 +18,46 @@ class _IncomeMailState extends State<IncomeMail> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SendMail(),
+            ),
+          );
+        },
+        backgroundColor: kPrimaryColor,
+        child: const Icon(
+          Icons.mail_rounded,
+          color: Colors.white,
+        ),
+      ),
       body: SafeArea(
         child: SizedBox(
           height: height,
           width: width,
-          child: SingleChildScrollView(
-            child: SafeArea(
-              child: Column(
-                children: [
-                  _top(height, width),
-                ],
-              ),
+          child: SafeArea(
+            child: Column(
+              children: [
+                _top(height, width),
+                SizedBox(height: height * 0.02),
+                _body(height, width),
+              ],
             ),
           ),
         ),
       ),
     );
   }
+
+  Widget _body(double height, double width) => Expanded(
+        child: ListView.builder(
+          itemCount: 4,
+          itemBuilder: (context, index) => MailBox(mail: "text"),
+        ),
+      );
 
   Widget _top(double height, double width) => Padding(
         padding: EdgeInsets.only(top: height * 0.01),
@@ -91,7 +118,7 @@ class _IncomeMailState extends State<IncomeMail> {
                         ),
                       if (!_isLoad)
                         Icon(
-                          Icons.upload,
+                          Icons.refresh,
                           size: height * 0.024,
                         ),
                     ],

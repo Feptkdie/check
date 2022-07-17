@@ -8,6 +8,8 @@ import 'package:check/helpers/app_preferences.dart';
 import 'package:check/meet_pages/profile/profile_edit.dart';
 import 'package:check/pages/profile/income_mail.dart';
 import 'package:check/pages/profile/premium_page.dart';
+import 'package:check/pages/profile/profile_account.dart';
+import 'package:check/pages/profile/pull_history.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
@@ -407,6 +409,42 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const Divider(),
+                Padding(
+                  padding: EdgeInsets.only(
+                    right: width * 0.04,
+                    left: width * 0.04,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Данс",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: height * 0.02,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      if (currentUserMoney != null)
+                        Text(
+                          currentUserMoney,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: height * 0.02,
+                          ),
+                        ),
+                      if (currentUserMoney == null)
+                        Text(
+                          "₮ 0",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: height * 0.02,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const Divider(),
                 SizedBox(
                   height: height * 0.05,
                 ),
@@ -536,10 +574,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const IncomeMail(),
+                          builder: (context) => const PullList(),
                         ),
                       );
                     },
@@ -598,7 +636,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const IncomeMail(),
+                          builder: (context) => const ProfileAccount(),
                         ),
                       );
                     },

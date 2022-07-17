@@ -80,6 +80,11 @@ class _LoginPageState extends State<LoginPage> {
         currentUserStatus = body["user"]["status"];
         currentUserBio = body["user"]["bio"];
         currentUserFavAnswer1 = body["user"]["answer1"];
+        currentUserMoney = body["user"]["money"];
+        currentUserBank = body["user"]["bank"];
+        currentUserBankDesc = body["user"]["bank_desc"];
+        currentUserAccount = body["user"]["bank_account"];
+        currentUserAccountName = body["user"]["bank_account_name"];
         // currentUserImages.clear();
 
         // final imageItems =
@@ -99,12 +104,16 @@ class _LoginPageState extends State<LoginPage> {
         //   );
         //   currentUserImages.add(userImagesModel);
         // });
+        userPullRequestItems.clear();
+        body["pull_list"].forEach((element) {
+          userPullRequestItems.add(element);
+        });
 
         currentBottomIndex = 0;
         _saveUserData(_userEmailTEC.text, _userPasswordTEC.text);
 
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => const HomePage()),
             (Route<dynamic> route) => false);
       } else {
         setState(() {
